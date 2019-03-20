@@ -1,0 +1,29 @@
+{
+  "name": "Node-Website-EC2-Sample-App",
+  "description": "Sample NodeJs web application",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "mocha": "5.0.0",
+    "unit.js": "2.0.0",
+    "supertest": "3.0.0"
+  },
+  "scripts": {
+    "test": "mocha --recursive tests --exit",
+    "server": "node ./app.js"
+  },
+  "dependencies": {
+    "@google/maps": "^0.5.5",
+    "bcrypt": "^3.0.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "geohash": "0.0.1",
+    "heroku": "^7.22.7",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.9",
+    "passport-local-mongoose": "^5.0.1",
+    "path": "^0.12.7"
+  }
+}

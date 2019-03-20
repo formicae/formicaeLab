@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/style.css' />
+    <style>
+        .showPage {
+            display: block;
+        }
+        .hidePage {
+            display: none;
+        }
+    </style>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h2><%= title %></h2>
+<div id="userDataPage" class="showPage">
+    <table id="userBoard" width="60%" border="1" class="userBoard">
+        <tr>
+            <th>user name</th>
+            <th>info</th>
+            <th>activation</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+        <% Object.keys(userData).forEach(key => {%>
+            <tr>
+                <td class="<%= userData[key]._id%>"><%= userData[key].username %></td>
+                <td class="<%= userData[key]._id%>"><%= userData[key].info %></td>
+                <td class="<%= userData[key]._id%>"><%= userData[key].activated %></td>
+                <td class="<%= userData[key]._id%>"><input type="button" id="edit<%=userData[key]._id%>" value="edit"></td>
+                <td class="<%= userData[key]._id%>"><input type="button" id="delete<%=userData[key]._id%>" value="delete"></td>
+            </tr>
+        <% }); %>
+    </table>
+    <input type="button" onclick="showCreatePage()" value="create ID">
+</div>
+<div id="signupPage" class="hidePage">
+    <form method="post">
+        <table>
+            <tr>
+                <td><span>User Name</span></td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td><span>UserId</span></td>
+                <td><input type="text" name="userid"></td>
+            </tr>
+            <tr>
+                <td><span>Password</span></td>
+                <td><input type="password" name="password"></td>
+            </tr>
+        </table>
+        <input type="submit" id="submitButton" value="Done!">
+    </form>
+    <form method="get" action="/">
+        <input type="button" id="goback" value="go back to main page">
+    </form>
+    <input type="button" onclick="showUserDataPage()" value="create ID">
+</div>
+<script type="text/javascript" src="userPage.js"></script>
+</body>
+</html>
