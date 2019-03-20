@@ -1,6 +1,5 @@
-const apiKey = require('./googleMapApi.json');
 const googleMapClient = require('@google/maps').createClient({
-    key : apiKey.key,
+    key : process.env.GOOGLE_API_KEY,
     Promise : Promise
 });
 // googleMapClient.geocode({address: '잠실 리시온'})

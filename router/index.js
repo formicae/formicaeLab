@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const googleApiKey = require('../auth/googleMapApi.json');
 const googleMapClient = require('../auth/googlemap');
 const User = require('../schema/users');
 const locations = [
