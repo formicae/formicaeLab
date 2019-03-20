@@ -33,7 +33,7 @@ router.get('/info', (req, res, next) => {
 })
 
 router.get('/map', (req, res, next) => {
-    res.render('googlemap', {source:`https://maps.googleapis.com/maps/api/js?key=${googleApiKey.key}&callback=initMap`});
+    res.render('googlemap', {source:`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&callback=initMap`});
 })
 
 router.post('/map', (req, res, next) => {
