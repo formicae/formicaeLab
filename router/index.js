@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const googleMapClient = require('../auth/googlemap');
+const googleMapClient = require('../auth/googlemapAuth');
 const User = require('../schema/users');
 const locations = [
     {lat: 37.4972, lng: 127.329},
@@ -32,8 +32,9 @@ router.get('/info', (req, res, next) => {
 })
 
 router.get('/map', (req, res, next) => {
-    res.render('googlemap', {source:`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&callback=initMap`});
-})
+    res.render('googlemap', {
+        source: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places&callback=initAutocomplete`});
+});
 
 router.post('/map', (req, res, next) => {
     locations.push([req.body.latitude, req.body.longitude]);

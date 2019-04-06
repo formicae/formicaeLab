@@ -3,8 +3,8 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const port = process.env.PORT || 3000;
-const db = require('./auth/mongo');
+const port = process.env.PORT || 2000;
+const db = require('./auth/mongoAuth');
 db();
 const indexRouter = require('./router/index');
 const userRouter = require('./router/user');
@@ -15,10 +15,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false,}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/img')));
+app.use(express.static(path.join(__dirname, 'public/css')));
 app.use(express.static(path.join(__dirname, 'views/script')));
 
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.listen(port, () => {
-    console.log('formicaeLab server is running!');
+    console.log(`formicaeLab server is running on port ${port}!`);
 });

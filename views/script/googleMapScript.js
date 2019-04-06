@@ -11,17 +11,56 @@ function initMap() {
     // Note: The code uses the JavaScript Array.prototype.map() method to
     // create an array of markers based on a given "locations" array.
     // The map() method here has nothing to do with the Google Maps API.
+    var forkImg = 'resize_forkflag.png';
     var markers = locations.map(function(location, i) {
         return new google.maps.Marker({
             position: location,
-            label: labels[i % labels.length]
+            label: labels[i % labels.length],
+            map : map,
+            icon : forkImg
         });
     });
+    var styles = [
+        {
+            stylers : [
+                {hue : 0},
+                {saturation : -100},
+                {lightness:0}
+            ]
+        }
+    ];
+    var styledMap = new google.maps.StyledMapType(styles, {name:'Styled map'});
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style')
+
+    google.maps.event.addDomListener(window, 'resize', () => {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(center);
+    })
 
     // Add a marker clusterer to manage the markers.
     var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            alert(position.coords.latitude + ' ' + position.coords.longitude);
+        }, err => {
+            console.error(err);
+        }, {
+            enableHighAccuracy : false,
+            maximumAge : 0,
+            timeout : Infinity
+        });
+    } else {
+        alert('GPS 지원 불가');
+    }
+}
+// getLocation();
+
 var locations = [
     {lat: 37.4972, lng: 127.329},
     {lat: 37.4773, lng: 127.529},
